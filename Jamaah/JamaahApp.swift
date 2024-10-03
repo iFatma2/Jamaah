@@ -12,6 +12,8 @@ struct JamaahApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            //VideoContentView()
         }
     }
 }
+

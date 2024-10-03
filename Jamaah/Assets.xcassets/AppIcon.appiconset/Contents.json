@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "APPICONE (1024 x 1024 px).PNG",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -23,7 +24,6 @@
           "value" : "tinted"
         }
       ],
-      "filename" : "APPICONE (1024 x 1024 px).PNG",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
