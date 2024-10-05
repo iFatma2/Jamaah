@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct UserNamePage: View {
+    
+    let name: String // To receive the name as a parameter
+    
     var body: some View {
         ZStack {
             Image("BG")
@@ -20,10 +23,10 @@ struct UserNamePage: View {
                 Image("2")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 150, height: 150) // ضبط الحجم
-                    .padding(.top, 50) // إضافة مسافة من الأعلى
+                    .frame(width: 366, height: 400) // ضبط الحجم
+                    .padding(.top, 10) // إضافة مسافة من الأعلى
                 
-                Text("Tala Are You Ready!!")
+                Text("\(name),  Are You Ready!!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Color.red)
@@ -46,7 +49,7 @@ struct UserNamePage: View {
                         .padding(.top, 20) // إضافة مسافة من الأعلى
                 }
                 
-                NavigationLink(destination: Text("Destination")) { // اعدلها الهوم بيج
+                NavigationLink(destination: homeScreen()){ // اعدلها الهوم بيج
                     Text("Skip")
                         .fontWeight(.medium)
                         .foregroundColor(.blue) // لون النص
@@ -59,5 +62,5 @@ struct UserNamePage: View {
 }
 
 #Preview {
-    UserNamePage()
+    UserNamePage(name: "Tala")
 }

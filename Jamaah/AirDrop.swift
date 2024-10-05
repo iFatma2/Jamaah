@@ -54,14 +54,14 @@ struct AirDrop: View {
                 }
                 .padding(.top, 20)
                 
-                NavigationLink(destination: VideoContentView()) {
-                    Text("Test The Camera 📸♥️") // Button to navigate
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding(.bottom, 60)
+//                NavigationLink(destination: VideoContentView()) {
+//                    Text("Test The Camera 📸♥️") // Button to navigate
+//                        .padding()
+//                        .background(Color.blue)
+//                        .foregroundColor(.white)
+//                        .cornerRadius(10)
+//                }
+//                .padding(.bottom, 60)
             }
             .padding()
         }

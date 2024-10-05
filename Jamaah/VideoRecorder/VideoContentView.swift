@@ -12,31 +12,51 @@ struct VideoContentView: View {
     @State var isRecording = false
     
     var body: some View {
-        ZStack {
-            viewModel.preview?
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .edgesIgnoringSafeArea(.all)
+        VStack {
+            // الجزء العلوي باللون الأسود
+            Color.black
+                .frame(height: UIScreen.main.bounds.height / 2) // نصف ارتفاع الشاشة
             
-            VStack {
-                Spacer()
+            // الجزء السفلي المخصص للكاميرا
+            ZStack {
+                viewModel.preview?
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .edgesIgnoringSafeArea(.all)
                 
-                Button(action: {
-                    isRecording ? viewModel.stopRecording() : viewModel.startRecording()
-                    isRecording.toggle()
-                }) {
-                    isRecording ? Text("Stop") : Text("Start")
+                VStack(alignment: .center) {
+                    Spacer()
+                    
+                    Button(action: {
+                        isRecording ? viewModel.stopRecording() : viewModel.startRecording()
+                        isRecording.toggle()
+                    }) {
+                        Text(isRecording ? "Stop" : "Start")
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+//                    .padding()
+
+                    Button(action: {
+                        viewModel.toggleCamera()
+                    }) {
+                        Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90.camera.fill")
+                            .padding()
+                            .frame(width: 70.0, height: /*@START_MENU_TOKEN@*/50.0/*@END_MENU_TOKEN@*/)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
+                    
                 }
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
             }
         }
+        .edgesIgnoringSafeArea(.all) // تجاهل الحدود
     }
 }
 
-struct VideoContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        VideoContentView()
-    }
+#Preview {
+    VideoContentView()
 }
