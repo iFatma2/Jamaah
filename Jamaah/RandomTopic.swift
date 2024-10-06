@@ -1,15 +1,15 @@
-//
+
 import SwiftUI
 
-// Main view that handles random topic selection
 struct RandomTopic: View {
-    @State private var rotation: Double = 0 // Tracks the rotation angle
-    @State private var showAlert = false // State variable to track alert visibility
-    @State private var selectedTopics: String = "" // State to store the selected topic
-    @State private var selectedDescription: String = "" // State to store the selected description
+    @State private var rotation: Double = 0
+    @State private var showAlert = false
+    @State private var selectedTopic: String = ""
+    @State private var selectedDescription: String = ""
+    @State private var navigateToDetails = false
     
-    // Dictionary of topics and their corresponding descriptions
-    let topics: [String: String] = [
+    // قاموس المواضيع
+    let Topics: [String: String] = [
         "Go for a walk": "Walking is a great way to clear your mind and get some exercise!",
         "Read a book": "Reading helps you relax, learn, and expand your imagination.",
         "Watch a movie": "Movies can transport you to different worlds and provide entertainment.",
@@ -32,79 +32,83 @@ struct RandomTopic: View {
         "Try a new hobby": "Exploring new hobbies can lead to discovering hidden talents."
     ]
     
-    // Enum for navigation handling
-    enum Route {
-        case topic
+    var body: some View {
+//        NavigationStack {
+            ZStack {
+                Image("BG") // تأكد من وجود الصورة "BG" في الأصول
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    RandomTopicStar()
+                    RandomTopicWheel(rotation: $rotation, showAlert: $showAlert, selectedTopic: $selectedTopic, selectedDescription: $selectedDescription, topics: Topics, navigateToDetails: $navigateToDetails)
+                }
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("يلا نجرب"),
+                        message: Text("\(selectedTopic)"),
+                        primaryButton: .default(Text("يلا")) {
+                            navigateToDetails = true
+                        },
+                        secondaryButton: .cancel(Text("عيد"))
+                    )
+                }
+            }
+            .navigationDestination(isPresented: $navigateToDetails) {
+                TopicScreen(RTopic: selectedTopic, description2: selectedDescription)
+            }
+//        }
+    }
+}
+
+struct RandomTopicStar: View {
+    var body: some View {
+        Image("Star") // تأكد من وجود الصورة "Star" في الأصول
+            .resizable()
+            .scaledToFit()
+            .frame(width: 200, height: 200)
+            .padding(.bottom, 20)
+    }
+}
+
+struct RandomTopicWheel: View {
+    @Binding var rotation: Double
+    @Binding var showAlert: Bool
+    @Binding var selectedTopic: String
+    @Binding var selectedDescription: String
+    let topics: [String: String]
+    @Binding var navigateToDetails: Bool
+    
+    var body: some View {
+        Image("wheel") // تأكد من وجود الصورة "wheel" في الأصول
+            .resizable()
+            .scaledToFit()
+            .frame(width: 350, height: 350)
+            .rotationEffect(.degrees(rotation))
+            .animation(.easeOut(duration: 2), value: rotation)
+            .onTapGesture {
+                spinWheel()
+            }
+            .padding(.top, 100)
     }
     
-    @State private var path = [Route]() // Navigation path to track the stack
-    var body: some View {
-            NavigationStack(path: $path) {
-                ZStack {
-                    // Background image
-                    Image("BG")
-                        .resizable()
-                        .scaledToFill()
-                        .edgesIgnoringSafeArea(.all)
-                    
-                    VStack {
-                        // Star image
-                        Image("Star")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 200)
-                            .padding(.bottom, -20)
-                        
-                        // Wheel image for spinning
-                        Image("wheel")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 350, height: 350)
-                            .rotationEffect(.degrees(rotation)) // Rotate the wheel
-                            .animation(.easeOut(duration: 2), value: rotation) // Animate the rotation
-                            .onTapGesture {
-                                spinWheel() // Spin the wheel on tap
-                            }
-                            .padding(.top, 120)
-                    }
-                    .blur(radius: showAlert ? 20 : 0)
-                    .alert(isPresented: $showAlert) {
-                        Alert(
-                            title: Text("يلا نجرب"),
-                            message: Text(selectedTopics),
-                            primaryButton: .default(Text("يلا")) {
-                                path.append(.topic) // Navigate to TopicScreen when user clicks "يلا"
-                            },
-                            secondaryButton: .cancel(Text("عيد")) // Action for "Cancel" button
-                        )
-                    }
-                }
-                .navigationDestination(for: Route.self) { route in
-                    switch route {
-                    case .topic:
-                        TopicScreen(RTopic: selectedTopics, description2: selectedDescription) // Navigate to TopicScreen
-                    }
-                }
-            }
-        }
+    func spinWheel() {
+        let randomRotation = Double.random(in: 0...360)
+        rotation += 360 + randomRotation
         
-        // Function to spin the wheel
-        func spinWheel() {
-            let randomRotation = Double.random(in: 0...360) // Random rotation amount
-            rotation += 360 + randomRotation // Update the rotation angle
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { // Delay for 2 seconds
-                if let randomTopics = topics.randomElement() {
-                    selectedTopics = randomTopics.key // Select the random topic
-                    selectedDescription = randomTopics.value // Select its corresponding description
-                } else {
-                    selectedTopics = "No Topics found"
-                    selectedDescription = "No description available."
-                }
-                showAlert = true // Show alert with the selected topic
+        // إضافة تأخير قبل إظهار التنبيه
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { // تأخير 2 ثانية
+            if let randomTopic = topics.randomElement() {
+                selectedTopic = randomTopic.key
+                selectedDescription = randomTopic.value
+                showAlert = true // إظهار التنبيه بعد اختيار الموضوع
             }
         }
     }
+}
 
-    #Preview {
-        RandomTopic() // Preview of the RandomTopic view
-    }
+
+#Preview {
+    RandomTopic()
+}

@@ -52,16 +52,13 @@ struct AirDrop: View {
                 .sheet(isPresented: $showingShareSheet) {
                     ActivityView(items: [message])
                 }
+                NavigationLink(destination: homeScreen()){ // اعدلها الهوم بيج
+                    Text("Continue")
+                        .fontWeight(.medium)
+                        .foregroundColor(.blue) // لون النص
+                        .padding(.top, 10) // إضافة مسافة من الأعلى
+                }
                 .padding(.top, 20)
-                
-//                NavigationLink(destination: VideoContentView()) {
-//                    Text("Test The Camera 📸♥️") // Button to navigate
-//                        .padding()
-//                        .background(Color.blue)
-//                        .foregroundColor(.white)
-//                        .cornerRadius(10)
-//                }
-//                .padding(.bottom, 60)
             }
             .padding()
         }

@@ -4,6 +4,7 @@
 //
 //  Created by reham on 30/03/1446 AH.
 //
+
 import SwiftUI
 
 // View to display a topic and its description

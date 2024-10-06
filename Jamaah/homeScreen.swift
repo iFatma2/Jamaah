@@ -12,7 +12,7 @@ struct homeScreen: View {
     @State private var showAlert = false // State to control the alert for the third button
     
     var body: some View {
-        NavigationStack {
+//        NavigationStack {
             ZStack {
                 Image("b8")
                     .resizable()
@@ -49,12 +49,12 @@ struct homeScreen: View {
                 }
             }
             .navigationDestination(isPresented: $navigateToRandomActivity) {
-                Randomactivity() // Navigate to the Randomactivity view
+                RandomActivity() // Navigate to the Randomactivity view
             }
             .navigationDestination(isPresented: $navigateToRandomTopic) {
                 RandomTopic() // Navigate to the RandomTopic view
             }
-        }
+//        }
     }
 }
 

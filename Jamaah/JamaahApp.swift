@@ -13,7 +13,6 @@ struct JamaahApp: App {
         
         WindowGroup {
             ContentView()
-            //VideoContentView()
         }
     }
 }

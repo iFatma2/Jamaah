@@ -5,7 +5,7 @@ struct ContentView: View {
     @State private var navigateToNextPage = false // State variable to control navigation
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Image("BG")
                     .resizable()

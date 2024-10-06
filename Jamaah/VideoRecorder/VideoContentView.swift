@@ -36,19 +36,18 @@ struct VideoContentView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-//                    .padding()
 
                     Button(action: {
                         viewModel.toggleCamera()
                     }) {
                         Image(systemName: "arrow.trianglehead.2.clockwise.rotate.90.camera.fill")
                             .padding()
-                            .frame(width: 70.0, height: /*@START_MENU_TOKEN@*/50.0/*@END_MENU_TOKEN@*/)
+                            .frame(width: 70.0, height: 50.0)
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-                    .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
+                    .padding(.all, 10.0)
                     
                 }
             }
@@ -60,3 +59,4 @@ struct VideoContentView: View {
 #Preview {
     VideoContentView()
 }
+
