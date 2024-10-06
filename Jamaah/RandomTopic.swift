@@ -33,7 +33,6 @@ struct RandomTopic: View {
     ]
     
     var body: some View {
-//        NavigationStack {
             ZStack {
                 Image("BG") // تأكد من وجود الصورة "BG" في الأصول
                     .resizable()
@@ -58,7 +57,6 @@ struct RandomTopic: View {
             .navigationDestination(isPresented: $navigateToDetails) {
                 TopicScreen(RTopic: selectedTopic, description2: selectedDescription)
             }
-//        }
     }
 }
 
