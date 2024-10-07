@@ -14,10 +14,32 @@ struct homeScreen: View {
     var body: some View {
 //        NavigationStack {
             ZStack {
-                Image("b8")
+                Image("BG")
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
+                
+               
+                
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.white.opacity(0.2))
+                    .frame(width: 350, height: 750)
+                    .padding(.top, -40)
+                    .cornerRadius(50)
+                
+                VStack{
+                    
+                    
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 300 , height: 300)
+                        .scaledToFill()
+                        .edgesIgnoringSafeArea(.all)
+                        .offset(y :-200)
+                    
+                }
+                
+                
                 
                 VStack(spacing: 10) {
                     Spacer()
@@ -43,7 +65,7 @@ struct homeScreen: View {
                             Button("OK", role: .cancel) { }
                         }
                     }
-                    .offset(y: 10)
+                    .offset(y: 70)
                     
                     Spacer()
                 }
@@ -70,10 +92,12 @@ struct CustomButton: View {
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity, minHeight: 90)
-                .background(Color.blue.opacity(0.4))
-                .cornerRadius(20)
+                .background(Color.blue.opacity(0.6))
+                .cornerRadius(50)
         }
+        .frame(width: 300 , height: 100)
         .padding(.horizontal, 30)
+        
     }
 }
 

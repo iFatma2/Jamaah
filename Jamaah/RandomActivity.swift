@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 struct RandomActivity: View {
@@ -10,53 +9,66 @@ struct RandomActivity: View {
 
     // قاموس الأنشطة
     let Activities: [String: String] = [
-        "Go for a walk": "Walking is a great way to clear your mind and get some exercise!",
-        "Read a book": "Reading helps you relax, learn, and expand your imagination.",
-        "Watch a movie": "Movies can transport you to different worlds and provide entertainment.",
-        "Cook a new recipe": "Try cooking a new recipe and surprise yourself with new flavors.",
-        "Do a puzzle": "Puzzles are fun and great for sharpening your problem-solving skills.",
-        "Try yoga": "Yoga is a peaceful practice that helps both the body and the mind.",
-        "Write in a journal": "Writing helps you organize your thoughts and reflect on your day.",
-        "Meditate": "Meditation is a calming practice to help you focus and destress.",
-        "Listen to a podcast": "Podcasts are a great way to learn new things and be entertained.",
-        "Draw something": "Drawing allows you to express your creativity and ideas visually.",
-        "Learn a new language": "Learning a new language opens up new opportunities and cultures.",
-        "Plan your week": "Planning helps you stay organized and makes your goals achievable.",
-        "Call a friend": "Reaching out to a friend can brighten your day and strengthen your bond.",
-        "Organize a room": "A clean and organized room helps you feel more productive and relaxed.",
-        "Play a board game": "Board games are fun, especially with friends or family.",
-        "Learn a new skill": "Developing new skills helps you grow and opens new opportunities.",
-        "Take a nap": "A short nap can recharge your energy and improve your mood.",
-        "Do some gardening": "Gardening connects you with nature and can be very fulfilling.",
-        "Go for a bike ride": "Biking is a great way to exercise and explore your surroundings.",
-        "Try a new hobby": "Exploring new hobbies can lead to discovering hidden talents."
+        "يلا نطبخ": "عندكم ٦ مكونات ( تونة -  مكرونة - ليمون - نوع من انواع الاجبان - خضار - كريمة طبخ ) كل واحد منكم يطبخ طبخه مختلفه من هذي المكونات فقط ",
+        "يلا نطلع الفنان اللي داخلنا": " ⁠جهزوا ادوات الرسم و كل واحد يرسم شخص المجموعة تعرفه و خمنوا مين يطلع !",
+        "نخترع قصة": "معاكم ٣ دقايق تكتبوا قصه بشرط كل واحد من المجموعة يكتب جملة وحده > تنعاد اللفه لين تخلص الـ٣ دقايق ",
+        "خمن": " ⁠كل واحد من المجموعة يدندن اغنيه بدون اي كلمة و على الباقين يخمنوا الاغنيه",
+        "حار بارد ": "على واحد من المجموعة  يخبي شي في مكان و باقي المجموعة تدور عليه بحيث لو قرب احد من المكان يقول حار ولو بعد يقول بارد ",
+        "سمعتني ؟": "واحد من المجموعة يلبس السماعة و يشغل صوت يعزل اصوات المجموعه عنه، و باقي المجموعة يحاولوا يقولو ل جملة قصيرة مثلا  :  الكيلون في السيفون",
+        " ⁠نتحجى لغات ": "كل واحد يحكي قصة أو موقف  بلهجة مختلفة (مثلاً اللهجة المصرية )",
+        " ⁠نكتب شعر جماعي": "ورقة وقلم وكل شخص يكتب بيت شعري، بحيث يكون مرتبطا بالبيت الذي كتبه الشخص الذي قبله، حتى نصنع قصيدة جماعية.",
+        "غمض عينك وذوق ": "غمض عين واحد من المجموعة وخليه يذوق الاشياء اللي تختاروها",
+        "قلد وخمن ": "كل فرد يقلد شخص موجود في المجموعة، وعلى الباقي تخمين مين يقلد.",
+        "مين أنا؟": "كل شخص يكتب اسم شخصية مشهورة على ورقة، ويلصقها على جبهة الشخص بجانبه دون أن يراها، ويجب على الجميع تخمين الشخصية بسؤال أسئلة نعم/لا.",
+       
+        "اغمز": "استخدموا القرعة و يطلع شخص واحد القاتل، يقتل المجموعة عن طريق الغمزه بدون ما ينقفط من الباقين و اذا انقفط يخسر",
+       
+        "يلا نخبز": "اختارو نوع حلا مثلا (كيك - كوكيز) و اخبزوها  مع بعض ",
+       
+        
+        "الطبخ الغريب": " كل واحد من المجموعة يكتبوا مكونات طبخ غير متوقعة، و على المجموعة تطبخ سوا من هذه المكونات",
+       
+        
+        
+        " ميمز ": "شغلوا ميمز على الشاشه و اللي يضحك يدفع لصاحب الجوال”اللي مشغل التطبيق”  ٥ ريال",
+        
     ]
 
     var body: some View {
-            ZStack {
-                Image("BG") // تأكد من وجود الصورة "BG" في الأصول
-                    .resizable()
-                    .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
-                
-                VStack {
-                    RandomActivityStar()
-                    RandomActivityWheel(rotation: $rotation, showAlert: $showAlert, selectedActivity: $selectedActivity, selectedDescription: $selectedDescription, activities: Activities, navigateToVideoContentView: $navigateToVideoContentView)
-                }
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("يلا نجرب"),
-                        message: Text(selectedActivity),
-                        primaryButton: .default(Text("يلا")) {
-                            navigateToVideoContentView = true
-                        },
-                        secondaryButton: .cancel(Text("عيد"))
-                    )
-                }
+        ZStack {
+            Image("BG") // تأكد من وجود الصورة "BG" في الأصول
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
+            
+            RoundedRectangle(cornerRadius: 15)
+                .fill(Color.white.opacity(0.2))
+                .frame(width: 350, height: 750)
+                .padding(.top, -40)
+                .cornerRadius(50)
+            
+            
+            
+            
+            
+            VStack {
+                RandomActivityStar()
+                RandomActivityWheel(rotation: $rotation, showAlert: $showAlert, selectedActivity: $selectedActivity, selectedDescription: $selectedDescription, activities: Activities, navigateToVideoContentView: $navigateToVideoContentView)
             }
-            .navigationDestination(isPresented: $navigateToVideoContentView) {
-                VideoContentView() // Navigate to VideoContentView
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("يلا نجرب"),
+                    message: Text(selectedActivity),
+                    primaryButton: .default(Text("يلا")) {
+                        navigateToVideoContentView = true
+                    },
+                    secondaryButton: .cancel(Text("عيد"))
+                )
             }
+        }
+        .navigationDestination(isPresented: $navigateToVideoContentView) {
+            VideoContentView(selectedActivity: selectedActivity, selectedDescription: selectedDescription) // Pass selectedActivity and selectedDescription here
+        }
     }
 }
 
@@ -79,7 +91,7 @@ struct RandomActivityWheel: View {
     @Binding var navigateToVideoContentView: Bool
 
     var body: some View {
-        Image("wheel") // تأكد من وجود الصورة "wheel" في الأصول
+        Image("mmmm (1)") // تأكد من وجود الصورة "wheel" في الأصول
             .resizable()
             .scaledToFit()
             .frame(width: 350, height: 350)

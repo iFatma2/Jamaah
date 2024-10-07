@@ -23,6 +23,13 @@ struct TopicScreen: View {
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
             
+            RoundedRectangle(cornerRadius: 15)
+                .fill(Color.white.opacity(0.2))
+                .frame(width: 350, height: 750)
+                .padding(.top, -40)
+                .cornerRadius(50)
+            
+            
             VStack(spacing: 0) {
                 // Hint button
                 Button(action: {
@@ -33,7 +40,7 @@ struct TopicScreen: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 90, height: 90)
-                        .padding(.top, 550.0)
+                        .padding(.top, 500)
                 }
                 .padding()
                 .buttonStyle(PlainButtonStyle())
@@ -42,16 +49,21 @@ struct TopicScreen: View {
                 if buttonPressed {
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
+                        
                             .fill(Color.blue.opacity(0.2))
-                            .frame(width: 300, height: 70)
-                            .padding(.top, -40)
+                            .frame(width: 300, height: 50)
+                            .cornerRadius(50)
+                            .padding(.top, -20)
                             .overlay(
                                 Text(doorOpen ? description2 : "")
                                     .foregroundColor(.white)
+                                    .multilineTextAlignment(.trailing)
                                     .font(.headline)
-                                    .padding(.top, -40)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, -20)
                             )
                             .animation(.easeInOut, value: doorOpen)
+                        
                     }
                     .padding()
                     .transition(.slide)
@@ -64,9 +76,11 @@ struct TopicScreen: View {
                     .fill(Color.blue.opacity(0.3))
                     .frame(width: 330, height: 200)
                     .padding(.top, 20)
-                
+                    .cornerRadius(50)
                 Text(RTopic) // Display the selected topic
+                    .multilineTextAlignment(.center)
                     .foregroundColor(.white)
+                    
                     .font(.headline)
                     .padding(.top, 20)
             }
@@ -76,5 +90,5 @@ struct TopicScreen: View {
 }
 
 #Preview {
-    TopicScreen(RTopic: "Go for a walk", description2: "Walking is a great way to clear your mind and get some exercise!") // Preview of the TopicScreen
+    TopicScreen(RTopic: "", description2: "") // Preview of the TopicScreen
 }

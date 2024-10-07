@@ -10,27 +10,22 @@ struct RandomTopic: View {
     
     // قاموس المواضيع
     let Topics: [String: String] = [
-        "Go for a walk": "Walking is a great way to clear your mind and get some exercise!",
-        "Read a book": "Reading helps you relax, learn, and expand your imagination.",
-        "Watch a movie": "Movies can transport you to different worlds and provide entertainment.",
-        "Cook a new recipe": "Try cooking a new recipe and surprise yourself with new flavors.",
-        "Do a puzzle": "Puzzles are fun and great for sharpening your problem-solving skills.",
-        "Try yoga": "Yoga is a peaceful practice that helps both the body and the mind.",
-        "Write in a journal": "Writing helps you organize your thoughts and reflect on your day.",
-        "Meditate": "Meditation is a calming practice to help you focus and destress.",
-        "Listen to a podcast": "Podcasts are a great way to learn new things and be entertained.",
-        "Draw something": "Drawing allows you to express your creativity and ideas visually.",
-        "Learn a new language": "Learning a new language opens up new opportunities and cultures.",
-        "Plan your week": "Planning helps you stay organized and makes your goals achievable.",
-        "Call a friend": "Reaching out to a friend can brighten your day and strengthen your bond.",
-        "Organize a room": "A clean and organized room helps you feel more productive and relaxed.",
-        "Play a board game": "Board games are fun, especially with friends or family.",
-        "Learn a new skill": "Developing new skills helps you grow and opens new opportunities.",
-        "Take a nap": "A short nap can recharge your energy and improve your mood.",
-        "Do some gardening": "Gardening connects you with nature and can be very fulfilling.",
-        "Go for a bike ride": "Biking is a great way to exercise and explore your surroundings.",
-        "Try a new hobby": "Exploring new hobbies can lead to discovering hidden talents."
-    ]
+        "قد أحد قال لك كلمة والآن مأثره فيك؟": "فكر في كلمة أو نصيحة تغيرت بها حياتك.",
+            "أكثر كلمة أسعدتك من أمك وأبوك؟": "تذكر لحظات أو عبارات دعم ومحبة من العائلة.",
+            "سر صغير محد يعرف عنك؟": "شيء تخفيه أو تحافظ عليه لنفسك.",
+            "كيف تعرفت على أفضل صديق لك؟": "فكر في كيف بدأت علاقتكما وكيف تطورت.",
+            "جربت تصحى من النوم وأنت مبتسم بسبب حلم؟ أيش الحلم؟": "تذكر حلم جميل أو مفرح أثر فيك.",
+            "شخص بيننا عيوبه هي مميزاته؟": "فكر في شخص لديه صفات غير تقليدية تعتبر مميزة.",
+            "كل واحد من المجموعة يعبر عن صفتين في الطرف الثاني.": "تبادلوا الآراء حول الصفات الشخصية.",
+            "لو الأحلام تتحقق ايش راح يكون حلمك؟": "تخيل ما هو الشيء الأهم اللي تبي تحقيقه.",
+            "موقف محرج قد صار لك؟": "تذكر موقف غير مريح ويضحك.",
+            "لو باقي اخر خمس دقايق من حياتك ايش اخر شي تسويه؟": "تخيل كيف راح تختار أن تقضي وقتك الأخير.",
+            "مين اكثر شخص فينا يجيب العيد؟": "تذكروا المواقف اللي تسبب فيها شخص في الفوضى أو المواقف الغريبة.",
+            "مين اكثر شخص في المجموعة يقدر يطلعك من المشكلة الي انت فيها؟": "تذكر الشخص اللي يقدم لك الدعم والمساعدة دائم.",
+            "متى تكذب؟": "تذكر المواقف التي قد كذبت فيها.",
+            "ايش هو أكبر تحدي واجهته في حياتك؟": "تذكر تحدي صارلك وكيف تغلبت عليه.",
+            "ايش هو الشيء اللي دائماً تحاول تتجنبه؟": "فكر في الأمور اللي تفضل تبعد عنها أو تتجنبها."
+        ]
     
     var body: some View {
             ZStack {
@@ -39,13 +34,23 @@ struct RandomTopic: View {
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
                 
+                
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.white.opacity(0.2))
+                    .frame(width: 350, height: 750)
+                    .padding(.top, -40)
+                    .cornerRadius(50)
+                
+                
+                
+                
                 VStack {
                     RandomTopicStar()
                     RandomTopicWheel(rotation: $rotation, showAlert: $showAlert, selectedTopic: $selectedTopic, selectedDescription: $selectedDescription, topics: Topics, navigateToDetails: $navigateToDetails)
                 }
                 .alert(isPresented: $showAlert) {
                     Alert(
-                        title: Text("يلا نجرب"),
+                        title: Text("يلا نسولف"),
                         message: Text("\(selectedTopic)"),
                         primaryButton: .default(Text("يلا")) {
                             navigateToDetails = true
@@ -79,7 +84,7 @@ struct RandomTopicWheel: View {
     @Binding var navigateToDetails: Bool
     
     var body: some View {
-        Image("wheel") // تأكد من وجود الصورة "wheel" في الأصول
+        Image("WheelTopic") // تأكد من وجود الصورة "wheel" في الأصول
             .resizable()
             .scaledToFit()
             .frame(width: 350, height: 350)

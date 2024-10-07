@@ -17,30 +17,41 @@ struct WelcomePage2: View {
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
+            
+            RoundedRectangle(cornerRadius: 15)
+                .fill(Color.white.opacity(0.2))
+                .frame(width: 350, height: 750)
+                .padding(.top, -40)
+                .cornerRadius(50)
+            
+                        
+            Image("profile")
+                            .resizable()
+                            .frame(width: 300, height: 300)
+                            .offset(y:-200)
+                        
+          
 
-            VStack {
-                Image("1")
-                .offset(y:-140)
-                Text("Enter Your Name:")
-                    .font(.largeTitle)
-                    .fontWeight(.light)
-                    .foregroundColor(Color.white)
-                    .offset(y:-190)
+            VStack (spacing : 100) {
+                TextField("  ادخل اسمك", text: $name)
+                .multilineTextAlignment(.trailing)
+                .textFieldStyle(RoundedBorderTextFieldStyle()) // Added style for better appearance
+                .cornerRadius(50)
+                .padding()
+                .offset(y:140)
+                .frame(width: 300)
 
-                TextField("Enter your name", text: $name)
-                    .textFieldStyle(RoundedBorderTextFieldStyle()) // Added style for better appearance
-                    .padding()
-                    .offset(y:-220)
-                    .frame(width: 300)
                 NavigationLink(destination: UserNamePage(name: name)) {
-                    Text("Let's Go") // Button to navigate
+                    Text("يلا") // Button to navigate
+                        .frame(width: 230 , height: 6)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.blue.opacity(0.7)  )
                         .foregroundColor(.white)
-                        .cornerRadius(10)
+                        .cornerRadius(50)
+                        
                 }
                 .padding(.bottom, 60)
-                .offset(y:-230)
+                .offset(y:40)
             }
         }
     }
